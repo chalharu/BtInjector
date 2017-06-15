@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>IoC Container</Description>
+    <Copyright>Mitsuharu Seki 2016</Copyright>
+    <AssemblyTitle>BtInjector</AssemblyTitle>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Authors>Mitsuharu Seki</Authors>
+    <TargetFrameworks>net40;netstandard1.1;portable-net4+netcore45;Xamarin.iOS10;MonoAndroid10</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>portable</DebugType>
+    <AssemblyName>BtInjector</AssemblyName>
+    <PackageId>BtInjector</PackageId>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/')">
+    <FrameworkPathOverride>/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/</FrameworkPathOverride>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+    <NetStandardImplicitPackageVersion>1.1.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);netcoreapp1.0;netcoreapp1.1</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <PackageTargetFallback>$(PackageTargetFallback);</PackageTargetFallback>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+    <DefineConstants>$(DefineConstants);__IOS__</DefineConstants>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);xamarinios;xamarinwatchos;xamarintvos;</PackageTargetFallback>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'MonoAndroid10' ">
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net4+netcore45'">
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile5</TargetFrameworkProfile>
+    <DefineConstants>$(DefineConstants);PCL;</DefineConstants>
+    <IsPortable>true</IsPortable>
+  </PropertyGroup>
+   
+  <ItemGroup Condition="'$(TargetFramework)' == 'portable-net4+netcore45'">
+    <Reference Include="System.Core"/>
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETPortable'">
+    <TargetFrameworkRootPath Condition="Exists('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/xbuild-frameworks/')">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/xbuild-frameworks/</TargetFrameworkRootPath>
+  </PropertyGroup>
+</Project>
+

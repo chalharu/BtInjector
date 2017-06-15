@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RuntimeIdentifiers>win10-x64;win81-x64;win8-x64;win7-x86;osx.10.11-x64</RuntimeIdentifiers>
+    <ImplicitlyExpandDesignTimeFacades>true</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.0-beta3-*" />
+    <PackageReference Include="xunit.runner.utility" Version="2.3.0-beta3-*" />
+    <PackageReference Include="System.Runtime" Version="4.1.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BtInjector\BtInjector.csproj" />
+    <Compile Include="..\BtInjector.Test\**\*.cs">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/')">
+    <FrameworkPathOverride>/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/</FrameworkPathOverride>
+  </PropertyGroup>
+</Project>
